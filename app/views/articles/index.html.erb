@@ -1,35 +1,35 @@
 <p id="notice"><%= notice %></p>
 <div data-controller="article-search">
-  <div class="mx-auto md:w-2/3 w-full">
-    <h1 class="font-bold text-4xl">Articles</h1>
-    <%= form_with(method: :get) do |form| %>
-      <%= form.label :query, "Search by name:" %>
-      <%= form.text_field :query, data: { action: "input->article-search#search" }, autocomplete: "off", value: params[:query], :with => current_user.id %>
-      <%= form.text_field :user_id ,style: "display:none", value:current_user.id %>
+  <div class="mx-auto md:w-3/4 w-full flex">
 
-    <% end %>
-    <div id="reset-link">
-      <%= render "reset_link", query: params[:query] %>
-    </div>
-    <%= link_to 'New Article', new_article_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-      <%= render "articles", articles: @articles %>
-    </table>
+    <div class="mx-auto w-full">
+      <h1 class="font-bold text-4xl">Articles</h1>
+      <%= form_with(method: :get) do |form| %>
+        <%= form.label :query, "Search by name:" %>
+        <%= form.text_field :query, data: { action: "input->article-search#search" }, autocomplete: "off", value: params[:query], :with => current_user.id %>
+        <%= form.text_field :user_id ,style: "display:none", value:current_user.id %>
 
-    Your Search Tags : 
-
-    <div class="mx-auto md:w-2/3 w-full">
-      <table>
-        <thead>
+      <% end %>
+      <%= link_to 'New Article', new_article_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+      <table class="min-w-full">
+        <thead class="bg-white border-b">
           <tr>
-            <th style="padding: 1rem;">Name</th>
-            <th style="padding: 1rem;">Number of search</th>
+            <th class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Name</th>
+            <th colspan="3"  class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Actions</th>
+          </tr>
+        </thead>
+        <%= render "articles", articles: @articles %>
+      </table>
+
+    </div>
+    <div class="mx-auto w-full">
+
+      Your Search Tags : 
+      <table class="min-w-full">
+        <thead class="bg-white border-b" >
+          <tr>
+            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Name</th>
+            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Number of search</th>
           </tr>
         </thead>
         <tbody id="tags-list">
@@ -43,6 +43,6 @@
       </table>
     </div>
 
-
-
-<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+  </div>
+  <%= link_to "Sign out", destroy_user_session_path, :method => :delete, class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer"  %>
+  <%= link_to "Analytics", analytics_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer"  %>

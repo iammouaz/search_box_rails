@@ -1,18 +1,35 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <table>
-    <thead>
-      <tr>
-        <th style="padding: 1rem;">Name</th>
-        <th style="padding: 1rem;">Number of search</th>
-      </tr>
-    </thead>
-    <tbody id="tags-list">
-      <% @tags.each do |tag| %>
-        <tr>
-          <td style="padding: 1rem;"><%= tag[0] %></td>
-          <td style="padding: 1rem;"><%= tag[1] %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+<div class="flex flex-col mx-auto md:w-2/3 w-full">
+  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+      <div class="overflow-hidden">
+        <table class="min-w-full">
+          <thead class="bg-white border-b">
+            <tr>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                Name
+              </th>
+              <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                Number of search
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @tags.each do |tag| %>
+              <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><%= tag[0] %></td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                  <%= tag[1] %>
+                </td>
+
+              </tr>
+
+            <% end %>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
+
+<%= link_to "Back to articles", articles_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer"  %>
