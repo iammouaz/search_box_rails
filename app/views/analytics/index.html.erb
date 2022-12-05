@@ -1,0 +1,18 @@
+<div class="mx-auto md:w-2/3 w-full">
+  <table>
+    <thead>
+      <tr>
+        <th style="padding: 1rem;">Name</th>
+        <th style="padding: 1rem;">Number of search</th>
+      </tr>
+    </thead>
+    <tbody id="tags-list">
+      <% @tags.each do |tag| %>
+        <tr>
+          <td style="padding: 1rem;"><%= tag[0] %></td>
+          <td style="padding: 1rem;"><%= tag[1] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

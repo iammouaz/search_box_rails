@@ -4,7 +4,9 @@
     <h1 class="font-bold text-4xl">Articles</h1>
     <%= form_with(method: :get) do |form| %>
       <%= form.label :query, "Search by name:" %>
-      <%= form.text_field :query, data: { action: "input->article-search#search" }, autocomplete: "off", value: params[:query] %>
+      <%= form.text_field :query, data: { action: "input->article-search#search" }, autocomplete: "off", value: params[:query], :with => current_user.id %>
+      <%= form.text_field :user_id ,style: "display:none", value:current_user.id %>
+
     <% end %>
     <div id="reset-link">
       <%= render "reset_link", query: params[:query] %>
@@ -19,3 +21,28 @@
       </thead>
       <%= render "articles", articles: @articles %>
     </table>
+
+    Your Search Tags : 
+
+    <div class="mx-auto md:w-2/3 w-full">
+      <table>
+        <thead>
+          <tr>
+            <th style="padding: 1rem;">Name</th>
+            <th style="padding: 1rem;">Number of search</th>
+          </tr>
+        </thead>
+        <tbody id="tags-list">
+          <% @user_tags.each do |tag| %>
+            <tr>
+              <td style="padding: 1rem;"><%= tag[0] %></td>
+              <td style="padding: 1rem;"><%= tag[1]  %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+
+
+<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
